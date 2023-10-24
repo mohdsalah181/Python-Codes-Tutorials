@@ -7,17 +7,22 @@ words = []
 word = ''
 count = 0
 
-for i in statement:
-    count = count+1
-    word = word + i
-    
-    if i==' ' or count==statementLength:
+for char in statement:
+    if char == ' ':
         words.append(word)
-        word = ''  
+        word=''
+        count+=1
+    elif count == statementLength-1:
+        word= word + char
+        words.append(word)
         
+    else:
+        word= word + char
+        count+=1
+    
+
 #print the statment in reverse -------------------#
 wordsCount = len(words)
-for i in range(wordsCount):
-    print(words[wordsCount-1], end=" ")
-    print(' ', end=" ")
+while wordsCount:
+    print(words[wordsCount-1], end=' ')
     wordsCount-=1
