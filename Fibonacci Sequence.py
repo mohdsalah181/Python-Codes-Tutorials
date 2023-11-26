@@ -3,11 +3,15 @@
 FebSequence = [0, 1]
 Fn = 0
 
-try:
-    while Fn < 2:
-        Fn = int(input('Enter Fibonacci Number equal to or greater than 2: '))
-except:
-    print('please enter number')
+while True:
+    if Fn >= 2:
+        break
+    try:
+        while Fn < 2:
+            Fn = int(input('Enter Fibonacci Number equal to or greater than 2: '))
+    except:
+        print('\nplease enter number')
+        
 
 
 
