@@ -1,24 +1,45 @@
-# Password Generator
-#---------------------------------------
+# python code to generate a password
+# -----------------------------------------------------------------------------
+# the password must contains at least 1 symbol and not more than 4
+# the password must contains at least 1 number and not more than 4
 # chr() is a built function that convert ASCII code to its corresponding character.
-# shuffle is a method that takes a sequence like a list and reorderize its items.
 
 import random
 
-def passwordShuffle(password):
-    passwordList = list(password)
-    random.shuffle(passwordList)
-    return ''.join(passwordList)
+# user input loop ------------------------------------------------------------
+userInput = True
+while(userInput):
+    try:
+        passwordLength = int(input('Enter Password Length between 8 - 16: '))
+        if passwordLength < 8 or passwordLength > 16:
+            print ('Password Length must be between 8 and 16 try again !')
+        else:
+            userInput = False
+    except:
+        print('wrong input !')
 
-capitalChar1 = chr(random.randint(65,90))
-capitalChar2 = chr(random.randint(65,90))
-smallChar1 = chr(random.randint(97,122))
-smallChar2 = chr(random.randint(97,122))
-num1 = chr(random.randint(48,57))
-num2 = chr(random.randint(48,57))
-symbol1 = chr(random.randint(35,38))
-symbol2 = chr(random.randint(35,38))
+        
+# specify the length of symbols, numbers, and characters
+while(True): # if both equal 4 then recalculate symbols and numbers length
+    symbolsLength = random.randint(1,4)
+    numbersLength = random.randint(1,4)
+    if symbolsLength == 4 and numbersLength == 4:
+        continue
+    else:
+        break
+charactersLength = passwordLength - symbolsLength - numbersLength
 
+# Generate password
+passwordList = []
 
-password = capitalChar1 + capitalChar2 + smallChar1 + smallChar2 + num1 + num2 + symbol1 + symbol2
-print(passwordShuffle(password))
+for i in range(symbolsLength):
+    passwordList.append(chr(random.randint(35,38)))
+
+for i in range(numbersLength):
+    passwordList.append(chr(random.randint(48,57)))
+
+for i in range(charactersLength):
+    passwordList.append(chr(random.randint(97,122)))
+    
+random.shuffle(passwordList)
+print(''.join(passwordList))
